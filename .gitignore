@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Teste / acoperire
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Rezultate generate (păstrează doar directoarele)
+results/tables/*
+results/figures/*
+!results/tables/.gitkeep
+!results/figures/.gitkeep
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Sistem
+.DS_Store
