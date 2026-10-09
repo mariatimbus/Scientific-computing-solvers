@@ -1,0 +1,164 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}\setmainfont{Latin Modern Roman}\setsansfont{DejaVu Sans}
+\usepackage{amsmath,amssymb,geometry,booktabs,array,xcolor,hyperref,fancyhdr,enumitem,needspace}
+\geometry{margin=24mm,headheight=15pt}\definecolor{navy}{HTML}{17365D}
+\hypersetup{colorlinks=true,linkcolor=navy}\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}\setlength{\emergencystretch}{3em}
+\setlist{itemsep=3pt,topsep=3pt}\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Scientific Computing Solvers}\fancyhead[R]{\small Ecuații neliniare}\fancyfoot[C]{\thepage}
+\renewcommand{\contentsname}{Cuprins}\setcounter{tocdepth}{1}
+\newcommand{\R}{\mathbb R}
+\hypersetup{pageanchor=false}
+\begin{document}
+\begin{titlepage}\vspace*{22mm}{\sffamily\color{navy}\Large SCIENTIFIC COMPUTING SOLVERS\par}\vspace{18mm}{\sffamily\bfseries\Huge Fișă de probleme\par}\vspace{10mm}{\Large Ecuații și sisteme neliniare\par}\vspace{7mm}18 probleme selectate și adaptate; enunțuri fără soluții.\par\vfill\textbf{Maria Alexandra Timbuș}\par Bibliografie: Heath, capitolul 5; Süli--Mayers, capitolele 1 și 4.\par 5 octombrie 2026\end{titlepage}\hypersetup{pageanchor=true}\textbf{Cum sunt selectate problemele.} Cele 18 enunțuri sunt traduse și reformulate din cărțile atașate. Ecuațiile și obiectivele matematice sunt păstrate; selecțiile și cerințele suplimentare sunt marcate. ``Exercises'' și ``Computer Problems'' sunt serii distincte de numerotare în Heath. Paginile indicate sunt cele tipărite, nu indexul paginilor PDF.
+
+\textbf{Ordine recomandată.} Problemele 1--7: formule și experimente scalare. Problemele 8--12: demonstrații de convergență. Problemele 13--18: sisteme și norme. La exercițiile numerice păstrează aproximările, reziduurile și motivul opririi. Evită să declari convergența numai pentru că pasul este mic.
+\begingroup\small\setlength{\parskip}{0pt}\tableofcontents\endgroup\newpage
+\Needspace{7\baselineskip}
+\section{Primii pași Newton și secantă}
+\textbf{Sursa:} Heath, Exercises 5.1, p. 176.
+
+Pentru $f(x)=x^2-2$, calculează primul pas Newton din $x_0=1$ și primul pas al secantei din $x_0=1$, $x_1=2$. Scrie formulele folosite.
+
+
+
+\Needspace{7\baselineskip}
+\section{Construirea formulelor Newton}
+\textbf{Sursa:} Heath, Exercises 5.2(a--c), p. 176.
+
+Scrie iterația Newton pentru: (a) $x^3-2x-5=0$; (b) $e^{-x}=x$; (c) $x\sin x=1$. Precizează când formula nu este definită.
+
+
+
+\Needspace{7\baselineskip}
+\section{Reciprocul fără împărțire}
+\textbf{Sursa:} Heath, Exercises 5.4, p. 176.
+
+Pentru un număr $y>0$, aplică Newton ecuației $1/x-y=0$ și simplifică formula astfel încât iterația să nu folosească împărțiri. Cerință suplimentară: determină un interval de porniri pozitive care garantează convergența.
+
+
+
+\Needspace{7\baselineskip}
+\section{Două reformulări pentru rădăcina pătrată}
+\textbf{Sursa:} Heath, Exercises 5.6, p. 176.
+
+Pentru $y=3$, analizează convergența locală către $\sqrt y$ a iterațiilor $g_1(x)=y+x-x^2$ și $g_2(x)=1+x-x^2/y$. Determină și funcția de iterație dată de Newton pentru $x^2-y=0$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Patru iterații pentru aceeași ecuație}
+\textbf{Sursa:} Heath, Computer Problems 5.1, pp. 177--178.
+
+Pentru $x^2-x-2=0$, studiază convergența locală către $2$ a funcțiilor
+\[g_1=x^2-2,\quad g_2=\sqrt{x+2},\quad g_3=1+2/x,\quad g_4=\frac{x^2+2}{2x-1}.\]
+Confirmă comportamentul prin iterații numerice. Cerință suplimentară: folosește $x_0=1.5$ și explică restricțiile de domeniu.
+
+
+
+\Needspace{7\baselineskip}
+\section{Bisecție, Newton și secantă pe două probleme}
+\textbf{Sursa:} Heath, Computer Problems 5.2(a,b), pp. 177--178; selecție.
+
+Rezolvă (a) $x^3-2x-5=0$ și (b) $e^{-x}=x$ cu bisecție, Newton și secantă. Discută oprirea și convergența; compară cu un solver de referință. Cerințe suplimentare: pentru bisecție folosește $[2,3]$, respectiv $[0,1]$; pentru Newton $x_0=2$, respectiv $0.5$; pentru secantă capetele bracketului. Ținta erorii absolute este $10^{-10}$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Newton la o rădăcină de multiplicitate patru}
+\textbf{Sursa:} Heath, Computer Problems 5.5(b), p. 178; selecție.
+
+Aplică Newton la $(x-1)^4=0$, pornind din $x_0=10$. Calculează primele iterații și explică rata observată și rata asimptotică. Cerință suplimentară: determină câți pași sunt necesari pentru eroare cel mult $10^{-8}$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Newton la o rădăcină dublă}
+\textbf{Sursa:} Süli--Mayers, Exercise 1.6, pp. 36--37; reformulare.
+
+Fie $f(\alpha)=f'(\alpha)=0$, cu $f''$ continuă lângă $\alpha$. Presupune $0<m<|f''(x)|<M<2m$ pe $[\alpha-\delta,\alpha+\delta]$. Arată că Newton converge pentru porniri din acest interval și determină factorul asimptotic. Verifică pe $e^x=1+x$, cu $x_0=1$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Newton la o rădăcină triplă}
+\textbf{Sursa:} Süli--Mayers, Exercise 1.7, p. 37.
+
+Extinde analiza rădăcinii duble la una triplă. Precizează ipotezele de regularitate necesare și factorul de convergență.
+
+
+
+\Needspace{7\baselineskip}
+\section{Convergență monotonă Newton}
+\textbf{Sursa:} Süli--Mayers, Exercise 1.8, p. 37.
+
+Fie $f\in C^2([X,\alpha])$, $f(\alpha)=0$, $f'(x)>0$ și $f''(x)<0$ pe interval. Demonstrează convergența Newton către $\alpha$ din orice $x_0\in[X,\alpha]$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Ordinul secantei}
+\textbf{Sursa:} Süli--Mayers, Exercise 1.10, pp. 37--38; reformulare.
+
+Pentru o rădăcină simplă $\alpha$ și $f\in C^2$ lângă ea, cu $f'(\alpha)>0$, $f''(\alpha)>0$, dedu relația dominantă dintre erorile secantei. Presupunând existența unui ordin asimptotic $p>1$, determină $p$ și constanta asimptotică.
+
+
+
+\Needspace{7\baselineskip}
+\section{Newton cu derivată înghețată}
+\textbf{Sursa:} Heath, Exercises 5.11, p. 177.
+
+Înlocuiește derivata din Newton printr-o constantă nenulă $d$: $x_{k+1}=x_k-f(x_k)/d$. Pentru o rădăcină simplă $\alpha$, determină condiția locală de convergență, rata tipică și alegerea care poate da convergență pătratică.
+
+
+
+\Needspace{7\baselineskip}
+\section{Newton pentru un sistem cerc--parabolă}
+\textbf{Sursa:} Heath, Exercises 5.8(a), p. 176; cerințe suplimentare marcate.
+
+Scrie iterația Newton pentru $x^2+y^2=1$, $x^2-y=0$. Cerințe suplimentare: determină toate soluțiile reale și explică unde Jacobianul este singular.
+
+
+
+\Needspace{7\baselineskip}
+\section{Un pas Newton în două dimensiuni}
+\textbf{Sursa:} Heath, Exercises 5.9, p. 177.
+
+Pentru sistemul $x^2-y^2=0$, $2xy=1$, efectuează un pas Newton din $(x_0,y_0)=(0,1)$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Porniri unde Newton pentru sisteme eșuează}
+\textbf{Sursa:} Heath, Exercises 5.12, p. 177.
+
+Consideră $x-1=0$, $xy-1=0$. Pentru ce puncte inițiale Newton nu poate efectua un pas standard? Explică și comportamentul din celelalte puncte.
+
+
+
+\Needspace{7\baselineskip}
+\section{Contracții și schimbarea normei}
+\textbf{Sursa:} Süli--Mayers, Exercise 4.1, p. 126.
+
+Fie $G$ o contracție în norma infinit, cu factor $L$. Folosind comparația normelor, demonstrează că este contracție în norma $p$, pentru $1\le p<\infty$, dacă $L<n^{-1/p}$.
+
+
+
+\Needspace{7\baselineskip}
+\section{Convergență fără contracție în norma infinit}
+\textbf{Sursa:} Süli--Mayers, Exercise 4.5, p. 127; demonstrație reală echivalentă.
+
+Pentru $G(x,y)=\tfrac13(x^2-y^2+3,\,2xy+1)^T$, verifică punctul fix $(1,1)$. Arată că testul standard cu norma infinit nu certifică local convergența, dar iterația este totuși local convergentă. Folosește Jacobianul și norma euclidiană.
+
+
+
+\Needspace{7\baselineskip}
+\section{De ce Newton vectorial este pătratic?}
+\textbf{Sursa:} Süli--Mayers, Exercise 4.6, pp. 127--128; reformulare.
+
+Fie $F\in C^2$ lângă $\alpha$, $F(\alpha)=0$, iar $J_F(\alpha)$ nesingular. Pentru $G(x)=x-J_F(x)^{-1}F(x)$, demonstrează $J_G(\alpha)=0$ și dedu convergența locală cel puțin pătratică.
+
+
+
+\section*{Bibliografie}
+Michael T. Heath, \emph{Scientific Computing: An Introductory Survey}, capitolul 5, exemplarul atașat. Endre Süli și David F. Mayers, \emph{An Introduction to Numerical Analysis}, capitolele 1 și 4, exemplarul atașat.
+\end{document}
